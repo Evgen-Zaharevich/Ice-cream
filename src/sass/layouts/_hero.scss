@@ -1,455 +1,334 @@
 .hero {
-  background-color: var(--background-primary-color);
+  background: var(--background-primary-color);
   overflow: hidden;
-  min-width: 320px;
-}
-.hero__container {
-  position: relative;
-}
-
-.hero__title {
-  position: relative;
-  padding-top: 194px;
-  padding-bottom: 158px;
-  z-index: 4;
-  width: 218px;
-}
-
-.hero__title-wrapper {
-  font-size: 26px;
-  line-height: 1.15;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-
-  &--color {
-    color: var(--white-color);
+  &__container {
+  
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    @include section(194px, 158px);
   }
-  &--size {
-    font-size: 48px;
-    line-height: 0.97;
-  }
-}
 
-.hero__ice-cream {
-  position: absolute;
-  bottom: 0;
-  right: 32px;
-  z-index: 1;
-  display: flex;
-  &::before {
+  // Main picture box
+  &__pic-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    right: 32px;
+    bottom: 0;
+  }
+
+  // Circle of the main pic
+  &__pic-box:before {
     content: '';
+    width: 346px;
+    height: 346px;
+    background: var(--background-secondary-color);
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
     position: absolute;
     top: -9px;
-    left: -81px;
-
-    display: flex;
-    width: 346px;
-    height: 344px;
-    border-radius: 50%;
-    background-color: var(--background-secondary-color);
-    z-index: -1;
+    animation: pulse infinite ease-in-out 4s;
   }
 
-    }
-    
-    @keyframes transition-ice-cream {
-      0% {
-        transform: scale(0.6);
-      }
-    
-      50% {
-        transform: scale(1.1);
-      }
-    
-      100% {
-        transform: scale(1);
-      }
+  // Main pic of hero
+  &__pic {
+    position: relative;
   }
 
-
-.hero__button {
-  font-size: 8px;
-  line-height: 1.25;
-  padding: 7px 13px;
-
-  &:not(:last-child) {
-    margin-right: 4px;
-  }
-}
-@media screen and(max-width:767.9px) {
-  .hero__milk {
+  // Maybe do it with Visible style?
+  // Info wrapper
+  // Right column of hero
+  &__right-wrapper,
+  &__info-wrapper {
     display: none;
   }
-  .hero__girl {
-    display: none;
-  }
-  .hero__lorem {
-    display: none;
-  }
-  .hero__cafes {
-    display: none;
-  }
-  .hero__food-trucks {
-    display: none;
-  }
-}
-@media screen and(min-width:768px) {
-  .hero__title {
-    width: 170px;
-    padding-top: 102px;
-    padding-bottom: 0;
-    margin-bottom: 20px;
-    &-wrapper {
-      font-size: 22px;
-      line-height: 1.14;
-      text-transform: uppercase;
 
-      &--size {
-        font-size: 34px;
-        line-height: 0.9;
-      }
-    }
-  }
-  .top-line {
-    display: flex;
+  // Left/Right column of hero
+  &__left-wrapper,
+  &__right-wrapper {
+    z-index: 1;
+    flex-direction: column;
     justify-content: space-between;
   }
-  .hero__cafes {
-    margin-top: 92px;
-    position: relative;
 
-    &::before {
-      content: ' ';
-      position: absolute;
-      right: 0;
-      width: 16px;
-      display: flex;
-      height: 16px;
-      border-radius: 50%;
-      background-color: var(--white-color);
-    }
+  // Title wrapper
+  &__title-wrapper {
+    width: 218px;
   }
 
-  .hero__food-trucks {
-    margin-top: 16px;
-    position: relative;
-    &::before {
-      content: ' ';
-      position: absolute;
-      right: 0;
-      width: 16px;
-      display: flex;
-      height: 16px;
-      border-radius: 50%;
-      background-color: var(--white-color);
-    }
-  }
-
-  .hero__number-cafes-trucks {
-    position: relative;
-
-    font-family: 'Titan One';
-    font-style: normal;
+  // H1 Title
+  &__title {
+    font-family: 'Titan One', cursive;
+    text-transform: uppercase;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 1.14;
+    @include fonts(26px, 30px);
+    color: var(--white-color);
+  }
+  &__secondline {
+    @include fonts(48px, 46px);
     color: var(--title-color);
-    padding-left: 10px;
-    padding-top: 4px;
   }
 
-  .hero__title-cafes-trucks {
+  &__buttons {
+    margin-top: 20px;
+  }
+
+  &__button {
+    padding: 7px 15px;
+    @include fonts(8px, 10px, 400);
+  }
+
+  &__button--left-margin {
+    margin-left: 8px;
+  }
+
+  &__girl-box {
     position: relative;
-    right: 8px;
-
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 1.25;
-    text-align: right;
-    color: var(--white-color);
   }
 
-  .hero__milk {
-    display: flex;
-    margin-bottom: 16px;
-  }    
-  @keyframes transition-milk {
-    0% {
-      transform: translatex(-200px);
+  // TABLET
+  @include mq('tablet') {
+    &__container {
+      @include section(102px, 0);
     }
-  
-    100% {
-      transform: translatex(0);
+
+    &__pic-box {
+      right: 277px;
     }
-  }
 
-  .hero__lorem {
-    display: flex;
-    flex-direction: column;
-    padding-top: 40px;
-  }
-  .hero__disc-arrow {
-    width: 130px;
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 1.5;
-    color: var(--white-color);
-    margin-bottom: 7px;
-    z-index: 5;
-  }
-
-  .hero__bottom-line {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .hero__ice-cream {
-    left: 322;
-    &::before {
-      top: -37px;
-      left: -74px;
+    &__pic-box:before {
       width: 335px;
-      height: 333px;
+      height: 335px;
+      top: -37px;
     }
-      }
 
-  .hero__girl {
-    display: flex;
-    z-index: 5;
-    align-items: flex-end;
-  }
-
-  .hero__button-circle {
-    width: 18px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-  }
-  .hero__button {
-    &:not(:last-child) {
-      margin-right: 8px;
+    &__pic {
+      left: -50px;
     }
-  }
 
-    // Anime by Ihor
-    .drops {
-      -webkit-filter: url(#liquid);
-      filter: url(#liquid);
+    &__left-wrapper,
+    &__right-wrapper,
+    &__info-wrapper {
+      display: flex;
+    }
+
+    &__title-wrapper {
+      width: 162px;
+    }
+
+    &__title {
+      @include fonts(22px, 25px);
+    }
+
+    &__secondline {
+      @include fonts(34px, 31px);
+    }
+
+    &__button {
+      @include fonts(8px, 10px, 400);
+    }
+
+    // Info wrapper
+    &__info-wrapper {
+      padding-bottom: 16px;
+      align-items: center;
+      @include fonts(8px, 16px, 400);
+      color: var(--white-color);
+    }
+
+    &__text-box {
+      width: 114px;
+    }
+
+    // Content of the Text box
+    &__text {
+      margin-bottom: 7px;
+    }
+
+    &__button {
+      padding: 7px 14px;
+    }
+
+    &__button-arrow {
+      width: 18px;
+      height: 18px;
+      padding: 0;
+    }
+
+    &__right-wrapper {
+      gap: 70px;
+    }
+
+    // Statistic item
+    &__stat-item {
+      position: relative;
+      text-align: end;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__stat-item:first-child {
+      margin-bottom: 15px;
+    }
+
+    // Statistic circle
+    &__stat-item::after {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: var(--white-color);
+      border-radius: 50%;
       z-index: -1;
-      width: 300px;
-      height: 160px;
-      opacity: 0;
-      animation: fade-in 0.1s linear 0.4s forwards;
-      position: absolute;
-      bottom: 86px;
-      left: -75px;
-      justify-content: center;
-  
-      &__filter {
-        display: none;
-      }
-  
-      &__drop1,
-      &__drop2 {
-        left: -66px;
-        right: 0;
-        bottom: 0;
-        width: 20px;
-        height: 26px;
-  
-        background-color: var(--white-color);
-        border-radius: 50%;
-        margin: auto;
-        position: absolute;
-      }
-  
-      &__drop1 {
-        bottom: -2px;
-        width: 56px;
-        height: 21px;
-  
-        border-radius: 0;
-      }
-  
-      &__drop2 {
-        animation: drop 1.3s cubic-bezier(1, 0.19, 0.66, 0.12) 0.5s infinite;
-      }
-  
-      @include mq('tablet') {}
-  
-      @include mq('desktop') {
-        bottom: 138px;
-        left: -43px;
-  
-        &__drop1 {
-          bottom: -6px;
-  
-          width: 92px;
-          height: 16px;
-        }
-  
-        &__drop1,
-        &__drop2 {
-          height: 32px;
-          border-radius: 0;
-        }
-      }
-    }  
-    @keyframes fade-in {
-      0% {
-        opacity: 0;
-      }
-  
-      100% {
-        opacity: 1;
-      }
-    }  
-    @keyframes drop {
-      0% {
-        bottom: 0px;
-        opacity: 1;
-      }
-  
-      80% {
-        opacity: 1;
-      }
-  
-      100% {
-        opacity: 1;
-        bottom: -200px;
-      }
-    }  
-    @keyframes wave {
-      0% {
-        background-position: 0 160px;
-        background-size: 170px 300px;
-      }
-  
-      100% {
-        background-position: 500px -18px;
-        background-size: 250px 150px;
-      }
     }
-}
 
-@media screen and(min-width:1200px) {
-  .hero__title {
-    width: 280px;
-    padding-top: 147px;
-    padding-bottom: 0;
-    margin-bottom: 40px;
+    &__stat-wrapper {
+      margin-right: -15px;
+      text-align: right;
+    }
 
-    &-wrapper {
-      font-size: 38px;
-      line-height: 1.16;
-      margin-bottom: 24px;
+    &__stat-num {
+      font-family: 'Titan One';
+      @include fonts(28px, 32px, false, 0.04em);
+      text-transform: uppercase;
+      color: var(--title-color);
+    }
 
-      &--size {
-        font-size: 58px;
-      }
+    &__stat-text {
+      @include fonts(8px, 10px, 400, false);
+      color: var(--white-color);
     }
   }
 
-  .top-line {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .hero__cafes {
-    margin-top: 152px;
-    position: relative;
-
-    &::before {
-      width: 30px;
-      height: 30px;
+  // DESKTOP
+  @include mq('desktop') {
+    &__container {
+      @include section(147px, 0);
     }
-  }
 
-  .hero__food-trucks {
-    margin-top: 15px;
-    position: relative;
-
-    &::before {
-      width: 30px;
-      height: 30px;
+    &__pic-box {
+      right: 290px;
     }
-  }
-  .hero__number-cafes-trucks {
-    font-size: 46px;
-    line-height: 1.15;
-  }
 
-  .hero__title-cafes-trucks {
-    position: relative;
-    right: 18px;
-    font-size: 14px;
-    line-height: 1.29;
-  }
-
-  .hero__milk {
-    display: flex;
-    margin-bottom: 60px;
-  }
-
-  .hero__lorem {
-    display: flex;
-    flex-direction: column;
-    padding-top: 68px;
-  }
-
-  .hero__disc-arrow {
-    width: 200px;
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 20px;
-  }
-
-  .hero__bottom-line {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .hero__ice-cream {
-    left: 636px;
-    &::before {
-      top: -54px;
-      left: -119px;
+    &__pic-box:before {
       width: 534px;
       height: 534px;
-    }
-  }
-
-  .hero__girl {
-    display: flex;
-    z-index: 5;
-
-  }
-
-  @keyframes transition-girl {
-    0% {
-      transform: translatex(200px);
+      top: -54px;
     }
 
-    100% {
-      transform: translatex(0);
+    &__title {
+      @include fonts(38px, 43px);
+    }
+
+    &__secondline {
+      @include fonts(58px, 52px);
+    }
+
+    &__button {
+      padding: 11px 23px;
+      @include fonts(14px, 18px, 400);
+    }
+
+    &__button--left-margin {
+      margin-left: 12px;
+    }
+
+    // Info wrapper
+    &__info-wrapper {
+      padding-bottom: 60px;
+      align-items: center;
+      @include fonts(14px, 25px, 400);
+      color: var(--white-color);
+    }
+
+    &__text-box {
+      width: 200px;
+    }
+
+    // Content of the Text box
+    &__text {
+      margin-bottom: 20px;
+    }
+
+    &__button-arrow {
+      width: 26px;
+      height: 26px;
+    }
+
+    &__buttons {
+      margin-top: 24px;
+    }
+
+    &__title-wrapper {
+      width: 277px;
+    }
+
+    &__right-wrapper {
+      gap: 103px;
+    }
+
+    // Statistic circle
+    &__stat-item::after {
+      content: '';
+      width: 30px;
+      height: 30px;
+    }
+
+    &__stat-num {
+      @include fonts(46px, 53px, false, 0.04em);
+    }
+
+    &__stat-text {
+      @include fonts(14px, 18px, false, false);
     }
   }
+}
 
-  .hero__button-circle {
-    width: 26px;
+// Animation
+.hero {
+  // svg text {
+  //   font-family: Titan One;
+  //   letter-spacing: 5px;
+  //   stroke: #d41443;
+  //   font-size: 40px;
+  //   font-weight: 700;
+  //   stroke-width: 0.2;
+  //   text-transform: uppercase;
+  //   animation: textAnimate 5s infinite alternate;
+  // }
+
+  // @keyframes textAnimate {
+  //   0% {
+  //     stroke-dasharray: 0 50%;
+  //     stroke-dashoffset: 20%;
+  //     fill: #d41443;
+  //   }
+
+  //   100% {
+  //     stroke-dasharray: 50% 0;
+  //     stroke-dashoffstet: -20%;
+  //     fill: #fff;
+  //   }
+  // }
+
+  // Text flow
+  .char {
+    animation: an 1s ease-out 1 both;
+    display: inline-block;
   }
-  .hero__button {
-    font-size: 14px;
-    line-height: 1.29;
-    padding: 15px 21px;
-    &:not(:last-child) {
-      margin-right: 12px;
+
+  @keyframes an {
+    from {
+      opacity: 0;
+      transform: perspective(500px) translate3d(-35px, -40px, -150px)
+        rotate3d(1, -1, 0, 35deg);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(500px) translate3d(0, 0, 0);
     }
   }
-
-  
 }
